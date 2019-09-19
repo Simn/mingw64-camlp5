@@ -1,0 +1,26 @@
+CROSS_HOST="i686-w64-mingw32"
+inherit cross
+
+NAME="mingw64-i686-camlp5"
+VERSION=710
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="camlp5 for Win64 toolchain"
+DESCRIPTION="camlp5 for Win64 toolchain"
+HOMEPAGE="https://github.com/camlp5/camlp5"
+SRC_URI="https://github.com/camlp5/camlp5/archive/rel${VERSION}.tar.gz"
+SRC_DIR="camlp5-rel${VERSION}"
+NO_AUTOHEADER=1
+
+DEPEND="make"
+
+src_compile() {
+	cd ${S}
+	./configure --prefix ${CROSS_SYSROOT} --bindir ${CROSS_BINDIR} --libdir ${CROSS_LIBDIR}
+	make
+}
+
+src_install() {
+	cd ${S}
+	cyginstall install DESTDIR=""
+}
