@@ -16,11 +16,11 @@ DEPEND="make"
 
 src_compile() {
 	cd ${S}
-	./configure --prefix ${CROSS_SYSROOT} --bindir ${CROSS_BINDIR} --libdir ${CROSS_LIBDIR}
+	./configure --bindir ${CROSS_BINDIR} --libdir ${CROSS_LIBDIR}
 	make
 }
 
 src_install() {
 	cd ${S}
-	cyginstall install DESTDIR=""
+	cyginstall install
 }
